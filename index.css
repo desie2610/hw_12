@@ -1,28 +1,141 @@
- body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+/* ===== ОСНОВА ===== */
+body {
+    margin: 0;
+    height: 100vh;
+    background:
+        radial-gradient(circle at top, #1b5e20, #0b2e13 60%, #041a0c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+}
 
-    .timer {
-      display: flex;
-      gap: 20px;
-    }
+/* ===== ТАЙМЕР ===== */
+.timer {
+    position: relative;
+    display: flex;
+    gap: 35px;
+    padding: 50px 60px;
+    border-radius: 30px;
 
-    .field {
-      text-align: center;
-    }
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.15),
+            rgba(255, 255, 255, 0.03)
+        );
 
-    .value {
-      font-size: 48px;
-      font-weight: bold;
-    }
+    backdrop-filter: blur(16px);
 
-    .label {
-      font-size: 14px;
-      opacity: 0.7;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    box-shadow:
+        0 0 40px rgba(0, 255, 100, 0.4),
+        0 0 80px rgba(255, 0, 0, 0.35),
+        inset 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+/* Красно-зелёная рамка */
+.timer::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 34px;
+    background: linear-gradient(90deg, #ff0000, #00ff66, #ff0000);
+    z-index: -1;
+    animation: borderMove 6s linear infinite;
+}
+
+@keyframes borderMove {
+    to { background-position: 400% 0; }
+}
+
+/* ===== БЛОКИ ===== */
+.field {
+    text-align: center;
+    min-width: 120px;
+}
+
+/* ===== ЦИФРЫ ===== */
+.value {
+    display: block;
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 10px #00ff66,
+        0 0 25px rgba(0, 255, 102, 0.9),
+        0 0 45px rgba(255, 0, 0, 0.8),
+        0 0 80px rgba(255, 0, 0, 0.6);
+
+    animation: pulse 1.6s infinite alternate;
+}
+
+/* ===== ПОДПИСИ ===== */
+.label {
+    margin-top: 12px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffdddd;
+}
+
+/* Пульсация */
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        text-shadow:
+            0 0 8px #00ff66,
+            0 0 20px rgba(255, 0, 0, 0.6);
     }
+    to {
+        transform: scale(1.08);
+        text-shadow:
+            0 0 20px #00ff66,
+            0 0 45px rgba(255, 0, 0, 1);
+    }
+}
+
+/* ===== ❄️ СНЕГ ===== */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(2px 2px at 30px 40px, white 100%, transparent 0),
+        radial-gradient(3px 3px at 140px 180px, white 100%, transparent 0),
+        radial-gradient(2px 2px at 260px 90px, white 100%, transparent 0),
+        radial-gradient(3px 3px at 380px 220px, white 100%, transparent 0),
+        radial-gradient(2px 2px at 520px 140px, white 100%, transparent 0);
+
+    background-size: 600px 600px;
+    animation: snow 16s linear infinite;
+    opacity: 0.65;
+}
+
+body::after {
+    animation-duration: 28s;
+    opacity: 0.35;
+}
+
+@keyframes snow {
+    to { transform: translateY(50%); }
+}
+
+
+
+@keyframes blink {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
