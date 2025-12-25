@@ -1,0 +1,28 @@
+ body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .timer {
+      display: flex;
+      gap: 20px;
+    }
+
+    .field {
+      text-align: center;
+    }
+
+    .value {
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .label {
+      font-size: 14px;
+      opacity: 0.7;
+    }
